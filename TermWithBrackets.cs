@@ -6,10 +6,11 @@ namespace Equ
     public class TermWithBrackets : Term
     {
 
-        public List<Term> BracketsContent { get; internal set; }
+        public override List<Term> BracketsContent { get; internal set; }
 
         public TermWithBrackets()
         {
+            coeff = 1;
             BracketsContent = new List<Term>();
         }
 
@@ -21,7 +22,7 @@ namespace Equ
             else if (modifier == Modifier.MOD) s += "%";
             else if (modifier == Modifier.NONE) s += "";
             if (coeff > 0) s += "+";
-            s += coeff;
+            if (coeff != 1) s += coeff;
             s += "(";
             foreach (Term t in BracketsContent)
             {
@@ -37,15 +38,17 @@ namespace Equ
             return BracketsContent.Count > 0;
         }
 
-        internal void WorkBrackets()
+        internal override void WorkBrackets()
         {
+            Solver solver = new Solver(BracketsContent, null);
+            BracketsContent = solver.Lhs;
             if (coeff > 1)
             {
-                foreach (Term t in BracketsContent)
+                for (int i = 0; i < BracketsContent.Count; i++)
                 {
-
+                    BracketsContent[i] = this * BracketsContent[i];
+                    this.Coeff = 1;
                 }
-
             }
         }
     }

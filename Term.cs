@@ -12,6 +12,7 @@ namespace Equ
         public Modifier Modifier { get => modifier; set => modifier = value; }
         public double Coeff { get => coeff; set => this.coeff = value; }
         public TermType Type { get => type; set => type = value; }
+        public virtual List<Term> BracketsContent { get; internal set; }
 
         public Term()
         {
@@ -24,6 +25,14 @@ namespace Equ
             this.coeff = v;
             type = TermType.number;
         }
+
+        internal virtual void WorkBrackets()
+        {//to be accessed by term with brackets
+        }
+        internal virtual void WorkBrackets(Term t)
+        {//to be accessed by term with brackets
+        }
+
 
         public override string ToString()
         {
@@ -69,10 +78,38 @@ namespace Equ
             if (t1.IsVariable() && t2.IsVariable()) tempTerm.Type = TermType.sqVariable;
             else if (t1.IsNumberz() && t2.IsVariable() || (t1.IsVariable() && t2.IsNumberz())) tempTerm.Type = TermType.variable;
             else if (t1.IsNumberz() && t2.IsSqVariable() || t1.IsSqVariable() && t2.IsNumberz()) tempTerm.Type = TermType.sqVariable;
+            else if (t1.BracketsContent != null && t2.BracketsContent != null)
+            {
+                tempTerm = new TermWithBrackets();
+                for (int i = 0; i < t1.BracketsContent.Count; i++)
+                {
+                    for (int j = 0; j < t1.BracketsContent.Count; j++)
+                    {
+                        tempTerm.BracketsContent.Add(t1.BracketsContent[i] * t2.BracketsContent[j]);
+                    }
+                }
+            }
+            //Condsider making a seperate method for these two
+            else if (t1.BracketsContent != null)
+            {
+                tempTerm = new TermWithBrackets();
+                for (int i = 0; i < t1.BracketsContent.Count; i++)
+                {
+                    tempTerm.BracketsContent.Add(t1.BracketsContent[i] * t2);
+                }
+            }
+            else if (t2.BracketsContent != null)
+            {
+                tempTerm = new TermWithBrackets();
+                for (int i = 0; i < t2.BracketsContent.Count; i++)
+                {
+                    tempTerm.BracketsContent.Add(t2.BracketsContent[i] * t1);
+                }
+            }
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }
-
+        //TODO Make sure it handles the brackets
         public static Term operator /(Term t1, Term t2)
         {
             Term tempTerm = new Term();

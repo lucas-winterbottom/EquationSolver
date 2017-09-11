@@ -6,9 +6,11 @@ namespace Equ
     internal class BracketHandler
     {
         public static string operators = "-+*/%";
-        internal static void Process(string s, Term temp)
+        //make it handle variables
+        internal static TermWithBrackets Process(string s, Modifier m)
         {
-            temp = new TermWithBrackets();
+            TermWithBrackets temp = new TermWithBrackets();
+            temp.Modifier = m;
             List<string> inside = new List<string>();
             string holder = "";
             foreach (char c in s)
@@ -39,6 +41,7 @@ namespace Equ
             }
             InputParser parser2 = new InputParser(inside);
             temp.BracketsContent = parser2.Lhs;
+            return temp;
         }
     }
 }

@@ -40,16 +40,19 @@ namespace Equ
         private void PrintParsedInput()
         {
             Console.WriteLine("PrintParsedInput");
-            Console.WriteLine("LHS");
             foreach (Term i in lhs)
             {
-                Console.WriteLine(i.ToString());
+                Console.Write(i.ToString());
             }
-            Console.WriteLine("RHS");
+            Console.Write("=");
             foreach (Term i in rhs)
             {
-                Console.WriteLine(i.ToString());
+                Console.Write(i.ToString());
             }
+            Console.WriteLine("");
+            Console.WriteLine("------------");
+
+
         }
 
         private void ParseInput()
@@ -61,8 +64,7 @@ namespace Equ
             {
                 if (s.Contains("(") || s.Contains(")"))
                 {
-                    BracketHandler.Process(s, temp);
-                    AddTerm(temp);
+                    AddTerm((Term)BracketHandler.Process(s, temp.Modifier));
                     temp = new Term();
                     temp.Modifier = Modifier.MUL;
                 }
@@ -135,7 +137,7 @@ namespace Equ
             }
             isNegative = false;
         }
-
+        //Error check to make sure not parsing anything stupid
         private void ProcessSquare(string s, Term temp)
         {
             string tempno = "";

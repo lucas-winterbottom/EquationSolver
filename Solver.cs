@@ -7,17 +7,30 @@ namespace Equ
     {
         private List<Term> lhs, rhs;
 
+        public List<Term> Lhs { get => lhs; set => lhs = value; }
+        public List<Term> Rhs { get => rhs; set => rhs = value; }
+
         public Solver(List<Term> lhs, List<Term> rhs)
         {
             this.lhs = lhs;
             this.rhs = rhs;
         }
-
+        public Solver(List<Term> lhs)
+        {
+            this.lhs = lhs;
+        }
+        public void SolveInterior(){
+          MulDivideModulus();
+        }
+        //TODO Make reusabel
         public void Solve()
         {
-            Brackets();
+            Brackets(lhs);
+            Brackets(rhs);
             MulDivideModulus(lhs);
             MulDivideModulus(rhs);
+            ExpandBrackets(lhs);
+            ExpandBrackets(rhs);
             MovePronumeralsLeft();
             BalanceLeft();
             PlusMinus();
@@ -37,9 +50,31 @@ namespace Equ
             Console.ReadLine();
         }
 
-        private void Brackets()
+        private void ExpandBrackets(List<Term> side)
         {
+            for (int i = 0; i < side.Count; i++)
+            {
+                if (side[i].BracketsContent != null)
+                {
+                    foreach (Term t in side[i].BracketsContent)
+                    {
+                        side.Insert(i + 1, t);
+                    }
+                    side.RemoveAt(i);
+                }
+            }
+        }
 
+        private void Brackets(List<Term> side)
+        {
+            foreach (Term t in side)
+            {
+                if (t.BracketsContent != null)
+                {
+                    t.WorkBrackets();
+                }
+                PrintOutput("Brackets");
+            }
         }
 
         private void SolveQuadratic()
@@ -77,14 +112,8 @@ namespace Equ
             int i = 0;
             foreach (Term t in lhs)
             {
-                if (t.Type == TermType.variable)
-                {
-                    i++;
-                }
-                if (t.Type == TermType.sqVariable)
-                {
-                    i += 2;
-                }
+                if (t.Type == TermType.variable) i++;
+                if (t.Type == TermType.sqVariable) i += 2;
             }
             return i;
         }
@@ -125,7 +154,7 @@ namespace Equ
             }
             PrintOutput("BalanceLeft");
         }
-        //ALso consider overloading + and Minus)
+        //TODO ALso consider overloading + and Minus)
         public void PlusMinus()
         {
             lhs.Sort((x, y) => y.Type.CompareTo(x.Type));
