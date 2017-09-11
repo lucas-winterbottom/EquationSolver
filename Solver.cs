@@ -19,10 +19,12 @@ namespace Equ
         {
             this.lhs = lhs;
         }
-        public void SolveInterior(){
-          MulDivideModulus();
+        public void SolveInterior()
+        {
+            MulDivideModulus(lhs);
         }
-        //TODO Make reusabel
+        //TODO:
+        // Make reusabel amybe
         public void Solve()
         {
             Brackets(lhs);
@@ -137,7 +139,7 @@ namespace Equ
             if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].Coeff = rhs[0].Coeff / lhs[0].Coeff;
             lhs[0].Coeff = 1;
-            PrintOutput("DivideX");
+            Console.WriteLine("X = " + rhs[0].Coeff);
         }
 
         private void BalanceLeft()
@@ -154,7 +156,7 @@ namespace Equ
             }
             PrintOutput("BalanceLeft");
         }
-        //TODO ALso consider overloading + and Minus)
+
         public void PlusMinus()
         {
             lhs.Sort((x, y) => y.Type.CompareTo(x.Type));
@@ -216,10 +218,13 @@ namespace Equ
             {
                 Console.Write(i.ToString());
             }
-            Console.Write("= ");
-            foreach (Term i in rhs)
+            Console.Write(" = ");
+            if (rhs != null)
             {
-                Console.Write(i.ToString());
+                foreach (Term i in rhs)
+                {
+                    Console.Write(i.ToString());
+                }
             }
             Console.WriteLine();
             Console.WriteLine("----------------");

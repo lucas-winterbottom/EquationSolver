@@ -26,7 +26,7 @@ namespace Equ
                 }
                 else if (operators.Contains(c.ToString()))
                 {
-                    inside.Add(holder);
+                    if (!holder.Equals("")) inside.Add(holder);
                     inside.Add(c.ToString());
                     holder = "";
                 }

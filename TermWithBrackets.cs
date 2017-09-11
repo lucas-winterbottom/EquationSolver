@@ -40,7 +40,8 @@ namespace Equ
 
         internal override void WorkBrackets()
         {
-            Solver solver = new Solver(BracketsContent, null);
+            Solver solver = new Solver(BracketsContent);
+            solver.SolveInterior();
             BracketsContent = solver.Lhs;
             if (coeff > 1)
             {

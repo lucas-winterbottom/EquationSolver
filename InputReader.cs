@@ -17,22 +17,24 @@ namespace Equ
             input = new List<string>();
             InputToStrings();
             RemoveCalc();
-            PrintInput();
         }
 
         public InputReader(string[] args)
         {
+            ValidateArgs(args);
             input = args.ToList();
             RemoveCalc();
-            PrintInput();
         }
 
-        public void PrintInput()
+        private void ValidateArgs(string[] args)
         {
-            foreach (string s in input)
+            bool noX = true;
+            if (!args.Contains(Constants.eq)) ErrorHandler.ExitWithMessage(Error.NoEquals);
+            foreach (string s in args)
             {
-                Console.WriteLine(s);
+                if (s.Contains(Constants.X)) noX = false;
             }
+            if (noX) ErrorHandler.ExitWithMessage(Error.NoPronumeral);
         }
 
         private void InputToStrings()
@@ -69,7 +71,6 @@ namespace Equ
                         break;
                     case '=':
                         hasEquals = true;
-                        current += c;
                         break;
                     case 'X':
                         hasX = true;
@@ -88,7 +89,7 @@ namespace Equ
 
         public void RemoveCalc()
         {
-            if (input[0].Equals("calc") && input.Count > 0)
+            if (input[0].Equals(Constants.calc) && input.Count > 0)
                 input.RemoveAt(0);
             else
                 ErrorHandler.ExitWithMessage(Error.MissingCalc);

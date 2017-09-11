@@ -11,6 +11,7 @@ namespace Equ
         private List<string> input;
         private bool isNegative = false;
         private bool isLhs = false;
+        private static string operators = "*/+-";
 
         public List<Term> Lhs
         {
@@ -34,30 +35,12 @@ namespace Equ
             this.input = input;
             isLhs = true;
             ParseInput();
-            PrintParsedInput();
         }
 
-        private void PrintParsedInput()
-        {
-            Console.WriteLine("PrintParsedInput");
-            foreach (Term i in lhs)
-            {
-                Console.Write(i.ToString());
-            }
-            Console.Write("=");
-            foreach (Term i in rhs)
-            {
-                Console.Write(i.ToString());
-            }
-            Console.WriteLine("");
-            Console.WriteLine("------------");
-
-
-        }
-
+        //TODO:
+        //Ending +-/* */
         private void ParseInput()
         {
-            double numericalValue;
             Term temp = new Term();
             isNegative = false;
             foreach (string s in input)
@@ -71,18 +54,18 @@ namespace Equ
                 else if (s.Contains("X^2"))
                 {
                     temp.Type = TermType.sqVariable;
-                    ProcessPronumeral(s, temp);
+                    AddTerm(ProcessPronumeral(s, temp));
                     temp = new Term();
                 }
                 else if (s.Contains("X"))
                 {
                     temp.Type = TermType.variable;
-                    ProcessPronumeral(s, temp);
+                    AddTerm(ProcessPronumeral(s, temp));
                     temp = new Term();
                 }
                 else if (s.Contains("^2"))
                 {
-                    ProcessSquare(s, temp);
+                    AddTerm(ProcessSquare(s, temp));
                     temp = new Term();
                 }
                 else if (s.Equals("+"))
@@ -107,12 +90,13 @@ namespace Equ
                 {
                     temp.Modifier = Modifier.MOD;
                 }
-                else if (s.Equals("="))
+                else if (s.Equals(Constants.eq))
                 {
+                    if(operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingOperator);
                     isLhs = false;
                     temp = new Term();
                 }
-                else if (Double.TryParse(s, out numericalValue))
+                else if (Double.TryParse(s, out double numericalValue))
                 {
                     if (isNegative) temp.Coeff = -numericalValue;
                     else temp.Coeff = numericalValue;
@@ -125,60 +109,78 @@ namespace Equ
                 }
             }
         }
+
+        //Adds the term to the left or right hand side depending on where the parser is up to
         private void AddTerm(Term test)
         {
-            if (isLhs)
-            {
-                lhs.Add(test);
-            }
-            else
-            {
-                rhs.Add(test);
-            }
+            if (isLhs) lhs.Add(test);
+            else rhs.Add(test);
             isNegative = false;
         }
-        //Error check to make sure not parsing anything stupid
-        private void ProcessSquare(string s, Term temp)
+
+        //Loop through while it is still a number, or a negative symbol
+        //Once it hits a non-number parse the number and store the term
+        private Term ProcessSquare(string s, Term temp)
         {
             string tempno = "";
             foreach (char c in s)
             {
-                if (c != '^')
+                if (Char.IsDigit(c) || c == '-')
                 {
                     tempno += c;
                 }
                 else
                 {
-                    if (!tempno.Equals(""))
+                    if (Double.TryParse(tempno, out double value))
                     {
-                        if (isNegative) temp.Coeff = -Double.Parse(tempno) * Double.Parse(tempno);
-                        else temp.Coeff = Double.Parse(tempno) * Double.Parse(tempno);
+                        if (isNegative) temp.Coeff = -value * value;
+                        else temp.Coeff = value * value;
                     }
+                    else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, tempno);
                 }
             }
-            AddTerm(temp);
+            return temp;
         }
 
-        private void ProcessPronumeral(string s, Term temp)
+        //Loop through while it is still a number, or a negative symbol
+        //Once it hits a non-number parse the number and store the term
+        private Term ProcessPronumeral(string s, Term temp)
         {
             string tempno = "";
             foreach (char c in s)
             {
-                if (c != 'X')
+                if (Char.IsDigit(c) || c == '-')
                 {
                     tempno += c;
                 }
+                else if (tempno.Length == 0) return temp;
                 else
                 {
-                    if (!tempno.Equals(""))
+                    if (Double.TryParse(tempno, out double value))
                     {
-                        if (isNegative) temp.Coeff = -Double.Parse(tempno);
-                        else temp.Coeff = Double.Parse(tempno);
+                        if (isNegative) temp.Coeff = -value;
+                        else temp.Coeff = value;
                     }
+                    else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, tempno);
                 }
             }
-            AddTerm(temp);
+            return temp;
+        }
 
+        private void PrintParsedInput()
+        {
+            Console.WriteLine("PrintParsedInput");
+            foreach (Term i in lhs)
+            {
+                Console.Write(i.ToString());
+            }
+            Console.Write(Constants.eq);
+            foreach (Term i in rhs)
+            {
+                Console.Write(i.ToString());
+            }
+            Console.WriteLine("");
+            Console.WriteLine("------------");
         }
 
     }

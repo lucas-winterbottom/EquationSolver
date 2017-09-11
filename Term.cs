@@ -8,7 +8,6 @@ namespace Equ
         protected TermType type;
         protected double coeff;
         protected Modifier modifier;
-
         public Modifier Modifier { get => modifier; set => modifier = value; }
         public double Coeff { get => coeff; set => this.coeff = value; }
         public TermType Type { get => type; set => type = value; }
@@ -83,13 +82,13 @@ namespace Equ
                 tempTerm = new TermWithBrackets();
                 for (int i = 0; i < t1.BracketsContent.Count; i++)
                 {
-                    for (int j = 0; j < t1.BracketsContent.Count; j++)
+                    for (int j = 0; j < t2.BracketsContent.Count; j++)
                     {
                         tempTerm.BracketsContent.Add(t1.BracketsContent[i] * t2.BracketsContent[j]);
                     }
                 }
             }
-            //Condsider making a seperate method for these two
+            //TODO: Condsider making a seperate method for these two
             else if (t1.BracketsContent != null)
             {
                 tempTerm = new TermWithBrackets();
@@ -109,7 +108,7 @@ namespace Equ
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }
-        //TODO Make sure it handles the brackets
+        //TODO: Make sure it handles the brackets
         public static Term operator /(Term t1, Term t2)
         {
             Term tempTerm = new Term();
@@ -127,7 +126,7 @@ namespace Equ
             Term tempTerm = new Term();
             if (t2.Coeff == 0) ErrorHandler.ExitWithMessage(Error.DivByZero);
             tempTerm.Coeff = t1.Coeff * t2.Coeff;
-            if (t1.IsVariable() || t2.IsVariable() || t1.IsSqVariable() || t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.DivByZero);
+            if (t1.IsVariable() || t2.IsVariable() || t1.IsSqVariable() || t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.NaN);
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }

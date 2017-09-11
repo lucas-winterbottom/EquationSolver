@@ -9,10 +9,18 @@ namespace Equ
             Console.WriteLine(e.ToString());
             Environment.Exit(0);
         }
+
+        internal static void ExitWithMessage(Error e, string s)
+        {
+            Console.WriteLine(e.ToString() + s);
+            Environment.Exit(0);
+        }
     }
 
     internal enum Error
     {
-        NaN, NoEquals, NoPronumeral, InvalidCharacters, MissingCalc, DivByZero
+        NaN, NoEquals, NoPronumeral, InvalidCharacters, MissingCalc, DivByZero,
+        ErrorParsingDouble,
+        TrailingOperator
     }
 }
