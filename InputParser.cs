@@ -45,13 +45,13 @@ namespace Equ
             isNegative = false;
             foreach (string s in input)
             {
-                if (s.Contains("(") || s.Contains(")"))
+                if (s.Contains(Constants.lb) || s.Contains(Constants.rb))
                 {
                     AddTerm((Term)BracketHandler.Process(s, temp.Modifier));
                     temp = new Term();
                     temp.Modifier = Modifier.MUL;
                 }
-                else if (s.Contains("X^2"))
+                else if (s.Contains(Constants.xSq))
                 {
                     temp.Type = TermType.sqVariable;
                     AddTerm(ProcessPronumeral(s, temp));
@@ -72,21 +72,21 @@ namespace Equ
                 {
                     temp.Modifier = Modifier.NONE;
                 }
-                else if (s.Equals("/"))
+                else if (s.Equals(Constants.div))
                 {
                     temp.Modifier = Modifier.DIV;
                 }
-                else if (s.Equals("-"))
+                else if (s.Equals(Constants.minus))
                 {
                     temp.Modifier = Modifier.NONE;
                     if (isNegative) isNegative = false;
                     else isNegative = true;
                 }
-                else if (s.Equals("*"))
+                else if (s.Equals(Constants.mul))
                 {
                     temp.Modifier = Modifier.MUL;
                 }
-                else if (s.Equals("%"))
+                else if (s.Equals(Constants.mod))
                 {
                     temp.Modifier = Modifier.MOD;
                 }

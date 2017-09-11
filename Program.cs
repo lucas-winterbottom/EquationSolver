@@ -4,7 +4,6 @@ namespace Equ
 {
     class Program
     {
-        private const string prompt = "Enter another Equation: ";
         private static InputReader reader;
 
         static void Main(string[] args)
@@ -12,13 +11,11 @@ namespace Equ
             reader = new InputReader(args);
             while (true)
             {
-
                 InputParser parser = new InputParser(reader.Input);
                 Solver solver = new Solver(parser.Lhs, parser.Rhs);
                 solver.Solve();
+                Console.WriteLine(Constants.prompt);
                 reader = new InputReader();
-                Console.WriteLine(prompt);
-
             }
 
         }

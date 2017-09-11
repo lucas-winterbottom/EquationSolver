@@ -17,20 +17,20 @@ namespace Equ
         public override string ToString()
         {
             string s = "";
-            if (modifier == Modifier.DIV) s += "/";
-            else if (modifier == Modifier.MUL) s += "*";
-            else if (modifier == Modifier.MOD) s += "%";
+            if (modifier == Modifier.DIV) s += Constants.div;
+            else if (modifier == Modifier.MUL) s += Constants.mul;
+            else if (modifier == Modifier.MOD) s += Constants.mod;
             else if (modifier == Modifier.NONE) s += "";
             if (coeff > 0) s += "+";
             if (coeff != 1) s += coeff;
-            s += "(";
+            s += Constants.lb;
             foreach (Term t in BracketsContent)
             {
                 s += t.ToString();
             }
-            s += ")";
+            s += Constants.rb;
             if (type == TermType.variable) s += "X";
-            if (type == TermType.sqVariable) s += "X^2";
+            if (type == TermType.sqVariable) s += Constants.xSq;
             return s;
         }
         internal bool IsBrackets()

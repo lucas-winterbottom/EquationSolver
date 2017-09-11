@@ -8,7 +8,6 @@ namespace Equ
     {
 
         private List<string> input;
-        private static string symbolcheck = "*-+/%X^1234567890calc()= ";
 
         public List<string> Input { get => input; set => input = value; }
 
@@ -46,7 +45,7 @@ namespace Equ
             bool inBrackets = false;
             foreach (char c in consoleInput)
             {
-                if (!symbolcheck.Contains(c))
+                if (!Constants.symbolcheck.Contains(c))
                 {
                     ErrorHandler.ExitWithMessage(Error.InvalidCharacters);
                 }
