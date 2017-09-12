@@ -72,27 +72,27 @@ namespace Equ
                 {
                     temp.Modifier = Modifier.NONE;
                 }
-                else if (s.Equals(Constants.div))
+                else if (s.Equals(Constants.div.ToString()))
                 {
                     temp.Modifier = Modifier.DIV;
                 }
-                else if (s.Equals(Constants.minus))
+                else if (s.Equals(Constants.minus.ToString()))
                 {
                     temp.Modifier = Modifier.NONE;
                     if (isNegative) isNegative = false;
                     else isNegative = true;
                 }
-                else if (s.Equals(Constants.mul))
+                else if (s.Equals(Constants.mul.ToString()))
                 {
                     temp.Modifier = Modifier.MUL;
                 }
-                else if (s.Equals(Constants.mod))
+                else if (s.Equals(Constants.mod.ToString()))
                 {
                     temp.Modifier = Modifier.MOD;
                 }
-                else if (s.Equals(Constants.eq))
+                else if (s.Equals(Constants.eq.ToString()))
                 {
-                    if(operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingOperator);
+                    if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingOperator);
                     isLhs = false;
                     temp = new Term();
                 }
@@ -105,7 +105,7 @@ namespace Equ
                 }
                 else
                 {
-                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters);
+                    ErrorHandler.ExitWithMessage(e: Error.InvalidCharacters);
                 }
             }
         }
@@ -136,7 +136,7 @@ namespace Equ
                         if (isNegative) temp.Coeff = -value * value;
                         else temp.Coeff = value * value;
                     }
-                    else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, tempno);
+                    else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " In string:" + s);
                 }
             }
             return temp;
@@ -154,14 +154,18 @@ namespace Equ
                     tempno += c;
                 }
                 else if (tempno.Length == 0) return temp;
-                else
+                else if (c == Constants.X || c == Constants.mul)
                 {
                     if (Double.TryParse(tempno, out double value))
                     {
                         if (isNegative) temp.Coeff = -value;
                         else temp.Coeff = value;
                     }
-                    else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, tempno);
+                    else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " In string:" + s);
+                }
+                else
+                {
+                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters, " Invalid character in pronumeral:" + c);
                 }
             }
             return temp;

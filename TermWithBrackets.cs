@@ -14,6 +14,7 @@ namespace Equ
             BracketsContent = new List<Term>();
         }
 
+        //Extention on the tostring method in Term, just adds the interior brackets content
         public override string ToString()
         {
             string s = "";
@@ -38,6 +39,7 @@ namespace Equ
             return BracketsContent.Count > 0;
         }
 
+        //Multiples the exterior term to the brakcets through the interior ones
         internal override void WorkBrackets()
         {
             Solver solver = new Solver(BracketsContent);

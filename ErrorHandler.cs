@@ -2,6 +2,8 @@ using System;
 
 namespace Equ
 {
+  //TODO:
+  //Handles errors in a way which produces a better explanatory result
     internal class ErrorHandler
     {
         internal static void ExitWithMessage(Error e)

@@ -47,6 +47,7 @@ namespace Equ
             return s;
         }
 
+        //used to invert the value when changing sides of the equation
         internal void InvertValue()
         {
             coeff = -coeff;

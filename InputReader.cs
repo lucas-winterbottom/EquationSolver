@@ -28,7 +28,7 @@ namespace Equ
         private void ValidateArgs(string[] args)
         {
             bool noX = true;
-            if (!args.Contains(Constants.eq)) ErrorHandler.ExitWithMessage(Error.NoEquals);
+            if (!args.Contains(Constants.eq.ToString())) ErrorHandler.ExitWithMessage(Error.NoEquals);
             foreach (string s in args)
             {
                 if (s.Contains(Constants.X)) noX = false;
@@ -47,7 +47,7 @@ namespace Equ
             {
                 if (!Constants.symbolcheck.Contains(c))
                 {
-                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters);
+                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters, " At index:" + consoleInput.IndexOf(c));
                 }
                 switch (c)
                 {

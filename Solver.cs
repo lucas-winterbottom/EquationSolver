@@ -6,7 +6,6 @@ namespace Equ
     public class Solver
     {
         private List<Term> lhs, rhs;
-
         public List<Term> Lhs { get => lhs; set => lhs = value; }
         public List<Term> Rhs { get => rhs; set => rhs = value; }
 
@@ -34,13 +33,16 @@ namespace Equ
             switch (DecideMethod())
             {
                 case 1:
+                    Console.WriteLine("Linear");
                     DivideX();
                     break;
                 case 2:
+                    Console.WriteLine("Quadratic -- Exponential X");
                     DivideX();
                     Squareroot();
                     break;
                 case 3:
+                    Console.WriteLine("Quadratic -- X & Exponential X");
                     SolveQuadratic();
                     break;
             }
@@ -78,7 +80,7 @@ namespace Equ
                 {
                     t.WorkBrackets();
                 }
-                PrintOutput("Brackets");
+
             }
         }
 
@@ -89,7 +91,7 @@ namespace Equ
             rhs[0].InvertValue();
             lhs.Add(rhs[0]);
             rhs.RemoveAt(0);
-            PrintOutput("Prep Quadratic");
+
             int a = Convert.ToInt32(lhs[0].Coeff);
             int b = Convert.ToInt32(lhs[1].Coeff);
             int c = Convert.ToInt32(lhs[2].Coeff);
@@ -166,7 +168,7 @@ namespace Equ
                     i--;
                 }
             }
-            PrintOutput("BalanceLeft");
+
         }
 
         //Going from left to right, add or subtract each compatible value,
@@ -195,7 +197,6 @@ namespace Equ
                     i--;
                 }
             }
-            PrintOutput("PlusMinus");
         }
 
         //Going from left to right, multiply, divide or modulus each compatible value,
@@ -226,27 +227,6 @@ namespace Equ
                         break;
                 }
             }
-            PrintOutput("MulDiv");
         }
-
-        public void PrintOutput(string caller)
-        {
-            Console.WriteLine(caller);
-            foreach (Term i in lhs)
-            {
-                Console.Write(i.ToString());
-            }
-            Console.Write(" = ");
-            if (rhs != null)
-            {
-                foreach (Term i in rhs)
-                {
-                    Console.Write(i.ToString());
-                }
-            }
-            Console.WriteLine();
-            Console.WriteLine("----------------");
-        }
-
     }
 }
