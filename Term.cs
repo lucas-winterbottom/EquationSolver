@@ -89,7 +89,8 @@ namespace Equ
                 }
             }
             //TODO: Condsider making a seperate method for these two
-            else if (t1.BracketsContent != null)
+            //FIXME: error when handling front of brackets
+            else if (t1.BracketsContent != null && t1.BracketsContent.Count > 1)
             {
                 tempTerm = new TermWithBrackets();
                 for (int i = 0; i < t1.BracketsContent.Count; i++)

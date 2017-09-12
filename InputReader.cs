@@ -70,6 +70,7 @@ namespace Equ
                         break;
                     case '=':
                         hasEquals = true;
+                        current += c;
                         break;
                     case 'X':
                         hasX = true;

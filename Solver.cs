@@ -19,12 +19,7 @@ namespace Equ
         {
             this.lhs = lhs;
         }
-        public void SolveInterior()
-        {
-            MulDivideModulus(lhs);
-        }
-        //TODO:
-        // Make reusabel amybe
+
         public void Solve()
         {
             Brackets(lhs);
@@ -52,6 +47,13 @@ namespace Equ
             Console.ReadLine();
         }
 
+        //Handles the calculation within the brackets
+        public void SolveInterior()
+        {
+            MulDivideModulus(lhs);
+        }
+
+        //Once the brackets are solved they can be moved into the regular equation
         private void ExpandBrackets(List<Term> side)
         {
             for (int i = 0; i < side.Count; i++)
@@ -67,6 +69,7 @@ namespace Equ
             }
         }
 
+        //Makes the outside bracket term multiply with the interior terms.
         private void Brackets(List<Term> side)
         {
             foreach (Term t in side)
@@ -79,6 +82,8 @@ namespace Equ
             }
         }
 
+        //Reorganises the Equation into ax^2 + bx + c and than executes the quadratic equation
+        //Displays both X values from the equation both positive and negative
         private void SolveQuadratic()
         {
             rhs[0].InvertValue();
@@ -90,8 +95,8 @@ namespace Equ
             int c = Convert.ToInt32(lhs[2].Coeff);
 
             double sqrtpart = b * b - 4 * a * c;
-            double x1 = (b + Math.Sqrt(sqrtpart)) / 2 * a;
-            double x2 = (b - Math.Sqrt(sqrtpart)) / 2 * a;
+            double x1 = (-b + Math.Sqrt(sqrtpart)) / 2 * a;
+            double x2 = (-b - Math.Sqrt(sqrtpart)) / 2 * a;
             PrintXs(x1, x2);
 
         }
@@ -102,6 +107,8 @@ namespace Equ
             Console.WriteLine("X = " + Convert.ToInt32(x1) + "," + Convert.ToInt32(x2));
         }
 
+        //Takes the first and only value on the RHS and takes the square root,
+        //then prints the x values
         private void Squareroot()
         {
             double x1 = Math.Sqrt(rhs[0].Coeff);
@@ -109,6 +116,8 @@ namespace Equ
             PrintXs(x1, x2);
         }
 
+        //Checks the LHS of the equation to determine what action to take to produce the values
+        //of x
         private int DecideMethod()
         {
             int i = 0;
@@ -120,6 +129,7 @@ namespace Equ
             return i;
         }
 
+        //Moves all the pronumeral Terms to the LHS of the equation
         private void MovePronumeralsLeft()
         {
             for (int i = 0; i < rhs.Count; i++)
@@ -134,6 +144,7 @@ namespace Equ
             }
         }
 
+        //Divides the term on the right by the coefficient of the x term on the left
         private void DivideX()
         {
             if (rhs.Count == 0) rhs.Add(new Term(0));
@@ -142,6 +153,7 @@ namespace Equ
             Console.WriteLine("X = " + rhs[0].Coeff);
         }
 
+        //Moves all the 'number' variables to the right hand side
         private void BalanceLeft()
         {
             for (int i = 0; i < lhs.Count; i++)
@@ -157,6 +169,9 @@ namespace Equ
             PrintOutput("BalanceLeft");
         }
 
+        //Going from left to right, add or subtract each compatible value,
+        //since the terms are organised in such a way that they will most if,
+        //not all be compatible they all should calculate
         public void PlusMinus()
         {
             lhs.Sort((x, y) => y.Type.CompareTo(x.Type));
@@ -183,6 +198,9 @@ namespace Equ
             PrintOutput("PlusMinus");
         }
 
+        //Going from left to right, multiply, divide or modulus each compatible value,
+        //terms that conatin pronumerals retain them if multiplied, and the operators
+        //are overloaded to help simplify the code at this level
         private void MulDivideModulus(List<Term> side)
         {
             for (int i = 1; i < side.Count; i++)

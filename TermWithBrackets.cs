@@ -43,13 +43,17 @@ namespace Equ
             Solver solver = new Solver(BracketsContent);
             solver.SolveInterior();
             BracketsContent = solver.Lhs;
-            if (coeff > 1)
+            if (coeff != 1)
             {
-                for (int i = 0; i < BracketsContent.Count; i++)
+                List<Term> temp = this.BracketsContent;
+                BracketsContent = null;
+                for (int i = 0; i < temp.Count; i++)
                 {
-                    BracketsContent[i] = this * BracketsContent[i];
-                    this.Coeff = 1;
+                    temp[i] = this * temp[i];
                 }
+                this.BracketsContent = temp;
+                this.Coeff = 1;
+
             }
         }
     }
