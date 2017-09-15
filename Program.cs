@@ -2,6 +2,9 @@
 
 namespace Equ
 {
+  //TODO:
+  // make sure that it throws correct errors
+  // check for terms on lhs and rhs
     class Program
     {
         private static InputReader reader;

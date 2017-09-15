@@ -1,0 +1,675 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/Users/lucaswinterbottom/Projects/Equ",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2017-09-13 19:32:08",
+            "filesum": 26,
+            "codesum": 1551,
+            "commentsum": 223,
+            "blanksum": 165,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.deps.json"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.dev.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 45,
+                    "comment": 1,
+                    "filename": "BracketHandler.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "Constants.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "Equ.csproj"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 2,
+                    "filename": "ErrorHandler.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 176,
+                    "comment": 7,
+                    "filename": "InputParser.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "InputReader.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 10,
+                    "comment": 10,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfo.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfoInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.CoreCompileInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.FileListAbsolute.txt"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.props"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.targets"
+                },
+                {
+                    "blank": 12,
+                    "code": 707,
+                    "comment": 0,
+                    "filename": "obj/project.assets.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "Program.cs"
+                },
+                {
+                    "blank": 20,
+                    "code": 192,
+                    "comment": 20,
+                    "filename": "Solver.cs"
+                },
+                {
+                    "blank": 16,
+                    "code": 125,
+                    "comment": 9,
+                    "filename": "Term.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 54,
+                    "comment": 2,
+                    "filename": "TermWithBrackets.cs"
+                },
+                {
+                    "blank": 74,
+                    "code": 0,
+                    "comment": 172,
+                    "filename": "Test.cs"
+                }
+            ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2017-09-15 23:36:09",
+            "filesum": 26,
+            "codesum": 1603,
+            "commentsum": 224,
+            "blanksum": 168,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.deps.json"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.dev.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.json"
+                },
+                {
+                    "blank": 5,
+                    "code": 64,
+                    "comment": 1,
+                    "filename": "BracketHandler.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "Constants.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "Equ.csproj"
+                },
+                {
+                    "blank": 3,
+                    "code": 25,
+                    "comment": 2,
+                    "filename": "ErrorHandler.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 177,
+                    "comment": 5,
+                    "filename": "InputParser.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "InputReader.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 10,
+                    "comment": 10,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfo.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfoInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.CoreCompileInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.FileListAbsolute.txt"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.props"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.targets"
+                },
+                {
+                    "blank": 12,
+                    "code": 707,
+                    "comment": 0,
+                    "filename": "obj/project.assets.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 3,
+                    "filename": "Program.cs"
+                },
+                {
+                    "blank": 20,
+                    "code": 192,
+                    "comment": 20,
+                    "filename": "Solver.cs"
+                },
+                {
+                    "blank": 16,
+                    "code": 154,
+                    "comment": 9,
+                    "filename": "Term.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 54,
+                    "comment": 2,
+                    "filename": "TermWithBrackets.cs"
+                },
+                {
+                    "blank": 74,
+                    "code": 0,
+                    "comment": 172,
+                    "filename": "Test.cs"
+                }
+            ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2017-09-15 23:36:45",
+            "filesum": 25,
+            "codesum": 1603,
+            "commentsum": 52,
+            "blanksum": 94,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.deps.json"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.dev.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.json"
+                },
+                {
+                    "blank": 5,
+                    "code": 64,
+                    "comment": 1,
+                    "filename": "BracketHandler.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "Constants.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "Equ.csproj"
+                },
+                {
+                    "blank": 3,
+                    "code": 25,
+                    "comment": 2,
+                    "filename": "ErrorHandler.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 177,
+                    "comment": 5,
+                    "filename": "InputParser.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "InputReader.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 10,
+                    "comment": 10,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfo.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfoInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.CoreCompileInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.FileListAbsolute.txt"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.props"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.targets"
+                },
+                {
+                    "blank": 12,
+                    "code": 707,
+                    "comment": 0,
+                    "filename": "obj/project.assets.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 3,
+                    "filename": "Program.cs"
+                },
+                {
+                    "blank": 20,
+                    "code": 192,
+                    "comment": 20,
+                    "filename": "Solver.cs"
+                },
+                {
+                    "blank": 16,
+                    "code": 154,
+                    "comment": 9,
+                    "filename": "Term.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 54,
+                    "comment": 2,
+                    "filename": "TermWithBrackets.cs"
+                }
+            ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2017-09-15 23:52:09",
+            "filesum": 25,
+            "codesum": 1605,
+            "commentsum": 54,
+            "blanksum": 94,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.deps.json"
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.dev.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "bin/Debug/netcoreapp2.0/Equ.runtimeconfig.json"
+                },
+                {
+                    "blank": 5,
+                    "code": 64,
+                    "comment": 1,
+                    "filename": "BracketHandler.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "Constants.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "Equ.csproj"
+                },
+                {
+                    "blank": 3,
+                    "code": 26,
+                    "comment": 2,
+                    "filename": "ErrorHandler.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 177,
+                    "comment": 5,
+                    "filename": "InputParser.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "InputReader.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 10,
+                    "comment": 10,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfo.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.AssemblyInfoInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.CoreCompileInputs.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.csproj.FileListAbsolute.txt"
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "obj/Debug/netcoreapp2.0/Equ.pdb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.props"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "obj/Equ.csproj.nuget.g.targets"
+                },
+                {
+                    "blank": 12,
+                    "code": 707,
+                    "comment": 0,
+                    "filename": "obj/project.assets.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 3,
+                    "filename": "Program.cs"
+                },
+                {
+                    "blank": 20,
+                    "code": 193,
+                    "comment": 22,
+                    "filename": "Solver.cs"
+                },
+                {
+                    "blank": 16,
+                    "code": 154,
+                    "comment": 9,
+                    "filename": "Term.cs"
+                },
+                {
+                    "blank": 5,
+                    "code": 54,
+                    "comment": 2,
+                    "filename": "TermWithBrackets.cs"
+                }
+            ]
+        }
+    ]
+}

@@ -10,11 +10,11 @@ namespace Equ
         public const char div = '/';
         public const char mul = '*';
         public const char mod = '%';
+                public const char plus = '+';
         public const string xSq = "X^2";
         public const char minus = '-';
         public const char lb = '(';
         public const char rb = ')';
-
 
 
     }

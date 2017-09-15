@@ -23,6 +23,9 @@ namespace Equ
     {
         NaN, NoEquals, NoPronumeral, InvalidCharacters, MissingCalc, DivByZero,
         ErrorParsingDouble,
-        TrailingOperator
+        TrailingOperator,
+        DivByPronumeral,
+        NoLHSContent,
+        NoNumeralValue
     }
 }

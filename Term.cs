@@ -90,8 +90,7 @@ namespace Equ
                 }
             }
             //TODO: Condsider making a seperate method for these two
-            //FIXME: error when handling front of brackets
-            else if (t1.BracketsContent != null && t1.BracketsContent.Count > 1)
+            else if (t1.BracketsContent != null)
             {
                 tempTerm = new TermWithBrackets();
                 for (int i = 0; i < t1.BracketsContent.Count; i++)
@@ -110,6 +109,8 @@ namespace Equ
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }
+
+
         //TODO: Make sure it handles the brackets
         public static Term operator /(Term t1, Term t2)
         {
@@ -117,8 +118,38 @@ namespace Equ
             if (t2.Coeff == 0) ErrorHandler.ExitWithMessage(Error.DivByZero);
             tempTerm.Coeff = t1.Coeff / t2.Coeff;
             if (t1.IsVariable() && t2.IsVariable()) tempTerm.Type = TermType.number;
-            else if (t1.IsNumberz() && t2.IsVariable() || t1.IsVariable() && t2.IsNumberz()) tempTerm.Type = TermType.variable;
-            else if (t1.IsNumberz() && t2.IsSqVariable() || (t1.IsSqVariable() && t2.IsNumberz())) tempTerm.Type = TermType.sqVariable;
+            else if (t1.IsVariable() && t2.IsNumberz()) tempTerm.Type = TermType.variable;
+            else if ((t1.IsSqVariable() && t2.IsNumberz())) tempTerm.Type = TermType.sqVariable;
+            else if (t1.IsSqVariable() && t2.IsVariable()) tempTerm.type = TermType.variable;
+            else if (t1.BracketsContent != null && t2.BracketsContent != null)
+            {
+                tempTerm = new TermWithBrackets();
+                for (int i = 0; i < t1.BracketsContent.Count; i++)
+                {
+                    for (int j = 0; j < t2.BracketsContent.Count; j++)
+                    {
+                        tempTerm.BracketsContent.Add(t1.BracketsContent[i] / t2.BracketsContent[j]);
+                    }
+                }
+            }
+            //TODO: Condsider making a seperate method for these two
+            else if (t1.BracketsContent != null)
+            {
+                tempTerm = new TermWithBrackets();
+                for (int i = 0; i < t1.BracketsContent.Count; i++)
+                {
+                    tempTerm.BracketsContent.Add(t1.BracketsContent[i] / t2);
+                }
+            }
+            else if (t2.BracketsContent != null)
+            {
+                tempTerm = new TermWithBrackets();
+                for (int i = 0; i < t2.BracketsContent.Count; i++)
+                {
+                    tempTerm.BracketsContent.Add(t2.BracketsContent[i] / t1);
+                }
+            }
+            else if (t1.IsNumberz() && t2.IsVariable() || t1.IsNumberz() && t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.DivByPronumeral, " Cannot Divide numeral by X or X^2" + t1.ToString() + t2.ToString());
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }

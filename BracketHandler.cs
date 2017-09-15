@@ -11,18 +11,42 @@ namespace Equ
         {
             TermWithBrackets temp = new TermWithBrackets();
             temp.Modifier = m;
-            List<string> inside = new List<string>();
+            string prefix = s.Split('(')[0];
+            string interior = s.Split('(')[1];
+            List<string> inside = ProcessInterior(interior);
+            temp.Type = ProcessPrefix(prefix, temp);
+            InputParser parser2 = new InputParser(inside);
+            temp.BracketsContent = parser2.Lhs;
+            return temp;
+        }
+
+        private static TermType ProcessPrefix(string prefix, TermWithBrackets temp)
+        {
+            if (prefix.Contains(Constants.X.ToString()))
+            {
+                prefix = prefix.Split('X')[0];
+                return TermType.variable;
+            }
+            if (prefix.Contains(Constants.xSq.ToString()))
+            {
+                prefix = prefix.Split('X')[0];
+                return TermType.sqVariable;
+            }
+            if (Double.TryParse(prefix, out double value)) temp.Coeff = value;
+            else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " Cannot Parse:" + prefix);
+            return TermType.number;
+
+        }
+
+        private static List<string> ProcessInterior(string s)
+        {
+            List<String> inside = new List<string>();
             string holder = "";
             foreach (char c in s)
             {
                 if (Char.IsDigit(c))
                 {
                     holder += c;
-                }
-                else if (c == '(')
-                {
-                    if (holder.Length > 0) temp.Coeff = Double.Parse(holder);
-                    holder = "";
                 }
                 else if (operators.Contains(c.ToString()))
                 {
@@ -39,9 +63,7 @@ namespace Equ
                     holder += c;
                 }
             }
-            InputParser parser2 = new InputParser(inside);
-            temp.BracketsContent = parser2.Lhs;
-            return temp;
+            return inside;
         }
     }
 }

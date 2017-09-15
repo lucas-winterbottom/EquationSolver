@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Equ
 {
+    //TODO:
+    //Handle when there is no numerical value
     public class Solver
     {
         private List<Term> lhs, rhs;
@@ -88,13 +90,14 @@ namespace Equ
         //Displays both X values from the equation both positive and negative
         private void SolveQuadratic()
         {
+            if (rhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoNumeralValue);
             rhs[0].InvertValue();
             lhs.Add(rhs[0]);
             rhs.RemoveAt(0);
 
-            int a = Convert.ToInt32(lhs[0].Coeff);
-            int b = Convert.ToInt32(lhs[1].Coeff);
-            int c = Convert.ToInt32(lhs[2].Coeff);
+            double a = lhs[0].Coeff;
+            double b = lhs[1].Coeff;
+            double c = lhs[2].Coeff;
 
             double sqrtpart = b * b - 4 * a * c;
             double x1 = (-b + Math.Sqrt(sqrtpart)) / 2 * a;
@@ -105,7 +108,7 @@ namespace Equ
 
         private void PrintXs(double x1, double x2)
         {
-            if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NaN);
+            if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NaN, " Cause: " + rhs[0]);
             Console.WriteLine("X = " + Convert.ToInt32(x1) + "," + Convert.ToInt32(x2));
         }
 
@@ -152,7 +155,7 @@ namespace Equ
             if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].Coeff = rhs[0].Coeff / lhs[0].Coeff;
             lhs[0].Coeff = 1;
-            Console.WriteLine("X = " + rhs[0].Coeff);
+            Console.WriteLine(lhs[0].ToString() + Constants.eq + rhs[0].Coeff);
         }
 
         //Moves all the 'number' variables to the right hand side

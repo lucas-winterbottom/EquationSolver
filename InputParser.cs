@@ -37,15 +37,13 @@ namespace Equ
             ParseInput();
         }
 
-        //TODO:
-        //Ending +-/* */
         private void ParseInput()
         {
             Term temp = new Term();
             isNegative = false;
             foreach (string s in input)
             {
-                if (s.Contains(Constants.lb) || s.Contains(Constants.rb))
+                if (s.Contains(Constants.lb) && s.Contains(Constants.rb))
                 {
                     AddTerm((Term)BracketHandler.Process(s, temp.Modifier));
                     temp = new Term();
@@ -68,19 +66,19 @@ namespace Equ
                     AddTerm(ProcessSquare(s, temp));
                     temp = new Term();
                 }
-                else if (s.Equals("+"))
+                else if (s.Equals(Constants.plus.ToString()))
                 {
                     temp.Modifier = Modifier.NONE;
-                }
-                else if (s.Equals(Constants.div.ToString()))
-                {
-                    temp.Modifier = Modifier.DIV;
                 }
                 else if (s.Equals(Constants.minus.ToString()))
                 {
                     temp.Modifier = Modifier.NONE;
                     if (isNegative) isNegative = false;
                     else isNegative = true;
+                }
+                else if (s.Equals(Constants.div.ToString()))
+                {
+                    temp.Modifier = Modifier.DIV;
                 }
                 else if (s.Equals(Constants.mul.ToString()))
                 {
@@ -92,7 +90,8 @@ namespace Equ
                 }
                 else if (s.Equals(Constants.eq.ToString()))
                 {
-                    if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingOperator);
+                    if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingOperator, " : " + s);
+                    if (lhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoLHSContent, " No Terms in the LHS of the Equation");
                     isLhs = false;
                     temp = new Term();
                 }
@@ -105,7 +104,7 @@ namespace Equ
                 }
                 else
                 {
-                    ErrorHandler.ExitWithMessage(e: Error.InvalidCharacters);
+                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters, " At input:" + s);
                 }
             }
         }
@@ -160,6 +159,7 @@ namespace Equ
                     {
                         if (isNegative) temp.Coeff = -value;
                         else temp.Coeff = value;
+                        return temp;
                     }
                     else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " In string:" + s);
                 }
