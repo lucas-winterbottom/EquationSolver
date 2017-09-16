@@ -6,7 +6,6 @@ namespace Equ
     internal class BracketHandler
     {
         public static string operators = "-+*/%";
-        //make it handle variables
         internal static TermWithBrackets Process(string s, Modifier m)
         {
             TermWithBrackets temp = new TermWithBrackets();
@@ -22,18 +21,17 @@ namespace Equ
 
         private static TermType ProcessPrefix(string prefix, TermWithBrackets temp)
         {
+            if (Double.TryParse(prefix.Split('X')[0], out double value)) temp.Coeff = value;
+            else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " Cannot Parse:" + prefix);
+
             if (prefix.Contains(Constants.X.ToString()))
             {
-                prefix = prefix.Split('X')[0];
                 return TermType.variable;
             }
             if (prefix.Contains(Constants.xSq.ToString()))
             {
-                prefix = prefix.Split('X')[0];
                 return TermType.sqVariable;
             }
-            if (Double.TryParse(prefix, out double value)) temp.Coeff = value;
-            else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " Cannot Parse:" + prefix);
             return TermType.number;
 
         }

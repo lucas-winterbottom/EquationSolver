@@ -35,6 +35,7 @@ namespace Equ
             this.input = input;
             isLhs = true;
             ParseInput();
+            if (rhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoRHSContent, " Missing values on the right hand side of the equation");
         }
 
         private void ParseInput()

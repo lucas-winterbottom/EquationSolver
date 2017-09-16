@@ -21,11 +21,11 @@ namespace Equ
 
     internal enum Error
     {
-        NaN, NoEquals, NoPronumeral, InvalidCharacters, MissingCalc, DivByZero,
+        NotANumber, NoEquals, NoPronumeral, InvalidCharacters, MissingCalc, DivByZero,
         ErrorParsingDouble,
         TrailingOperator,
         DivByPronumeral,
         NoLHSContent,
-        NoNumeralValue
+        NoRHSContent
     }
 }

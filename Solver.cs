@@ -3,24 +3,33 @@ using System.Collections.Generic;
 
 namespace Equ
 {
-    //TODO:
-    //Handle when there is no numerical value
     public class Solver
     {
         private List<Term> lhs, rhs;
         public List<Term> Lhs { get => lhs; set => lhs = value; }
         public List<Term> Rhs { get => rhs; set => rhs = value; }
 
+        //Constructor for working on an equation as a whole.
         public Solver(List<Term> lhs, List<Term> rhs)
         {
             this.lhs = lhs;
             this.rhs = rhs;
         }
+
+        //Constructor for working on terms within brackets
         public Solver(List<Term> lhs)
         {
             this.lhs = lhs;
         }
 
+        //Runs through the required steps to solve for x given and left and right hand side
+        //Solve brackets
+        //Handle multiplication, division and modulus
+        //Expand the brackets into the regular equation
+        //Move all the pronumerals to the left and the numerals to the right
+        //Add and subtract the terms on both side
+        //Determine the method in which X can be calculated
+        //Solve for X
         public void Solve()
         {
             Brackets(lhs);
@@ -51,7 +60,7 @@ namespace Equ
             Console.ReadLine();
         }
 
-        //Handles the calculation within the brackets
+        //Handles the calculation of terms within brakcets
         public void SolveInterior()
         {
             MulDivideModulus(lhs);
@@ -90,7 +99,7 @@ namespace Equ
         //Displays both X values from the equation both positive and negative
         private void SolveQuadratic()
         {
-            if (rhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoNumeralValue);
+            if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].InvertValue();
             lhs.Add(rhs[0]);
             rhs.RemoveAt(0);
@@ -100,28 +109,30 @@ namespace Equ
             double c = lhs[2].Coeff;
 
             double sqrtpart = b * b - 4 * a * c;
-            double x1 = (-b + Math.Sqrt(sqrtpart)) / 2 * a;
-            double x2 = (-b - Math.Sqrt(sqrtpart)) / 2 * a;
+            double x1 = (-b + Math.Sqrt(sqrtpart)) / (2 * a);
+            double x2 = (-b - Math.Sqrt(sqrtpart)) / (2 * a);
             PrintXs(x1, x2);
 
         }
 
+        //Makes sure the x1 and x2 values are real numbers and then prints them in the required format
         private void PrintXs(double x1, double x2)
         {
             if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NaN, " Cause: " + rhs[0]);
-            Console.WriteLine("X = " + Convert.ToInt32(x1) + "," + Convert.ToInt32(x2));
+            Console.WriteLine("X = " + x1 + "," + x2);
         }
 
         //Takes the first and only value on the RHS and takes the square root,
         //then prints the x values
         private void Squareroot()
         {
+            if (rhs.Count == 0) rhs.Add(new Term(0));
             double x1 = Math.Sqrt(rhs[0].Coeff);
             double x2 = -Math.Sqrt(rhs[0].Coeff);
             PrintXs(x1, x2);
         }
 
-        //Checks the LHS of the equation to determine what action to take to produce the values
+        //Checks the LHS of the equation to determine what action to take to produce the value/s
         //of x
         private int DecideMethod()
         {

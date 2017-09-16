@@ -28,10 +28,6 @@ namespace Equ
         internal virtual void WorkBrackets()
         {//to be accessed by term with brackets
         }
-        internal virtual void WorkBrackets(Term t)
-        {//to be accessed by term with brackets
-        }
-
 
         public override string ToString()
         {
@@ -53,6 +49,13 @@ namespace Equ
             coeff = -coeff;
         }
 
+        /**
+        *
+        *
+        *These next few method are just to make it easier to determine the type of a term
+        *
+        *
+        */
         internal bool IsVariable()
         {
             return type == TermType.variable;
@@ -61,7 +64,6 @@ namespace Equ
         {
             return type == TermType.sqVariable;
         }
-
         internal bool IsNumberz()
         {
             return type == TermType.number;
@@ -111,7 +113,9 @@ namespace Equ
         }
 
 
-        //TODO: Make sure it handles the brackets
+        ///<summary>
+        ///Handles the division of term such that it retains the x or makes it become x^2 depending on the circumstances, throwing a divide by zero error when neccessary
+        ///</summary>
         public static Term operator /(Term t1, Term t2)
         {
             Term tempTerm = new Term();
@@ -149,29 +153,33 @@ namespace Equ
                     tempTerm.BracketsContent.Add(t2.BracketsContent[i] / t1);
                 }
             }
-            else if (t1.IsNumberz() && t2.IsVariable() || t1.IsNumberz() && t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.DivByPronumeral, " Cannot Divide numeral by X or X^2" + t1.ToString() + t2.ToString());
+            else if (t1.IsNumberz() && t2.IsVariable() || t1.IsNumberz() && t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.DivByPronumeral, " Cannot Divide numeral by X or X^2 :" + t1.ToString() + t2.ToString());
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }
 
+        ///<summary>
+        ///Handles the modulus of term such that throws errors under circumstances where modulus cannot be performed
+        ///</summary>
         public static Term operator %(Term t1, Term t2)
         {
             Term tempTerm = new Term();
             if (t2.Coeff == 0) ErrorHandler.ExitWithMessage(Error.DivByZero);
             tempTerm.Coeff = t1.Coeff * t2.Coeff;
-            if (t1.IsVariable() || t2.IsVariable() || t1.IsSqVariable() || t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.NaN);
+            if (t1.IsVariable() || t2.IsVariable() || t1.IsSqVariable() || t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.NotANumber);
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }
     }
 
-
+    //Enum to detmine the modifier/operator of the term
     public enum Modifier
     {
         NONE, MOD, MUL, DIV
     }
+    //Enum to determine the Terms Type
     public enum TermType
     {
-        number, variable, sqVariable, brackets
+        number, variable, sqVariable
     }
 }
