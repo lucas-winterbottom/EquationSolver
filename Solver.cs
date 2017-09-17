@@ -118,7 +118,7 @@ namespace Equ
         //Makes sure the x1 and x2 values are real numbers and then prints them in the required format
         private void PrintXs(double x1, double x2)
         {
-            if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NaN, " Cause: " + rhs[0]);
+            if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NotANumber, " Cause: " + rhs[0]);
             Console.WriteLine("X = " + x1 + "," + x2);
         }
 
