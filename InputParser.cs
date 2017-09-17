@@ -53,13 +53,13 @@ namespace Equ
                     temp = new Term();
                     temp.Modifier = Modifier.MUL;
                 }
-                else if (s.Contains(Constants.xSq))
+                else if (s.Contains(Constants.xSq) || s.Contains(Constants.XSq))
                 {
                     temp.Type = TermType.sqVariable;
                     AddTerm(ProcessPronumeral(s, temp));
                     temp = new Term();
                 }
-                else if (s.Contains("X"))
+                else if (s.Contains(Constants.X) || s.Contains(Constants.x))
                 {
                     temp.Type = TermType.variable;
                     AddTerm(ProcessPronumeral(s, temp));
@@ -94,7 +94,7 @@ namespace Equ
                 }
                 else if (s.Equals(Constants.eq.ToString()))
                 {
-                    if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingOperator, " : " + s);
+                    if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingDivisionOperator, " : " + s);
                     if (lhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoLHSContent, " No Terms in the LHS of the Equation");
                     isLhs = false;
                     temp = new Term();

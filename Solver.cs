@@ -45,11 +45,11 @@ namespace Equ
             {
                 case 1:
                     Console.WriteLine("Linear");
-                    DivideX();
+                    DivideNumeralByXCoeff();
                     break;
                 case 2:
                     Console.WriteLine("Quadratic -- Exponential X");
-                    DivideX();
+                    DivideNumeralByXCoeff();
                     Squareroot();
                     break;
                 case 3:
@@ -161,12 +161,11 @@ namespace Equ
         }
 
         //Divides the term on the right by the coefficient of the x term on the left
-        private void DivideX()
+        private void DivideNumeralByXCoeff()
         {
             if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].Coeff = rhs[0].Coeff / lhs[0].Coeff;
-            lhs[0].Coeff = 1;
-            Console.WriteLine(lhs[0].ToString() + Constants.eq + rhs[0].Coeff);
+            Console.WriteLine(Constants.X + Constants.eq + rhs[0].Coeff);
         }
 
         //Moves all the 'number' variables to the right hand side

@@ -15,15 +15,52 @@ namespace Equ
         public InputReader()
         {
             input = new List<string>();
-            InputToStrings();
+            string consoleInput = Console.ReadLine();
+            input = consoleInput.Split(' ').ToList();
+            input = ConcatBrackets(input);
             RemoveCalc();
         }
 
         public InputReader(string[] args)
         {
             ValidateArgs(args);
-            input = args.ToList();
+            input = ConcatBrackets(args.ToList());
             RemoveCalc();
+        }
+
+        private List<string> ConcatBrackets(List<string> s)
+        {
+            List<string> tempList = new List<string>();
+            bool inBrackets = false;
+            string tempString = "";
+            for (int i = 0; i < s.Count; i++)
+            {
+                if (s.Contains(Constants.lb.ToString()))
+                {
+                    tempString += s[i];
+                    inBrackets = true;
+                }
+                else if (s.Contains(Constants.rb.ToString()))
+                {
+                    tempString += s[i];
+                    tempList.Add(tempString);
+                    inBrackets = false;
+                    tempString = "";
+                }
+                else if (s.Contains(Constants.rb.ToString()) && s.Contains(Constants.lb.ToString()))
+                {
+                    tempList.Add(s[i]);
+                }
+                else if (inBrackets)
+                {
+                    tempString += s[i];
+                }
+                else
+                {
+                    tempList.Add(s[i]);
+                }
+            }
+            return tempList;
         }
 
         //Check args to make sure they contain = and X
@@ -37,6 +74,7 @@ namespace Equ
             }
             if (noX) ErrorHandler.ExitWithMessage(Error.NoPronumeral, " Equation is missing X or X^2 value (args)");
         }
+
 
         //Convert the input into seperate strings utilising the format of operator space opeartor
         private void InputToStrings()

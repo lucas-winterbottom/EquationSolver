@@ -28,11 +28,11 @@ namespace Equ
             if (Double.TryParse(prefix.Split('X')[0], out double value)) temp.Coeff = value;
             else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " Cannot Parse:" + prefix);
 
-            if (prefix.Contains(Constants.X.ToString()))
+            if (prefix.Contains(Constants.X.ToString()) || prefix.Contains(Constants.x.ToString()))
             {
                 return TermType.variable;
             }
-            if (prefix.Contains(Constants.xSq.ToString()))
+            if (prefix.Contains(Constants.xSq) || prefix.Contains(Constants.XSq))
             {
                 return TermType.sqVariable;
             }

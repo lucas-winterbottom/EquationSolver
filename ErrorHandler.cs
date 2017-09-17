@@ -12,7 +12,8 @@ namespace Equ
 
         internal static void ExitWithMessage(Error e, string s)
         {
-            Console.WriteLine(e.ToString() + s);
+            Console.WriteLine("ErrorType: " + e.ToString());
+            Console.WriteLine("ErrorMessage: " + s);
             Environment.Exit(0);
         }
     }
@@ -21,7 +22,7 @@ namespace Equ
     {
         NotANumber, NoEquals, NoPronumeral, InvalidCharacters, MissingCalc, DivByZero,
         ErrorParsingDouble,
-        TrailingOperator,
+        TrailingDivisionOperator,
         DivByPronumeral,
         NoLHSContent,
         NoRHSContent

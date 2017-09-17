@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Equ
 {
-    public class Term
+  //Term OO object to better handle each term if the equation and its interactions with other terms
+      public class Term
     {
         protected TermType type;
         protected double coeff;
@@ -136,7 +137,6 @@ namespace Equ
                     }
                 }
             }
-            //TODO: Condsider making a seperate method for these two
             else if (t1.BracketsContent != null)
             {
                 tempTerm = new TermWithBrackets();
