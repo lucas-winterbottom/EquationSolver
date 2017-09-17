@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Equ
 {
-  //Term OO object to better handle each term if the equation and its interactions with other terms
-      public class Term
+    //Term OO object to better handle each term if the equation and its interactions with other terms
+    public class Term
     {
         protected TermType type;
         protected double coeff;
@@ -40,7 +40,7 @@ namespace Equ
             if (coeff > 0) s += "+";
             s += coeff;
             if (type == TermType.variable) s += "X";
-            if (type == TermType.sqVariable) s += Constants.xSq;
+            if (type == TermType.sqVariable) s += Constants.XSq;
             return s;
         }
 
@@ -79,8 +79,6 @@ namespace Equ
             Term tempTerm = new Term();
             tempTerm.Coeff = t1.Coeff * t2.Coeff;
             if (t1.IsVariable() && t2.IsVariable()) tempTerm.Type = TermType.sqVariable;
-            else if (t1.IsNumberz() && t2.IsVariable() || (t1.IsVariable() && t2.IsNumberz())) tempTerm.Type = TermType.variable;
-            else if (t1.IsNumberz() && t2.IsSqVariable() || t1.IsSqVariable() && t2.IsNumberz()) tempTerm.Type = TermType.sqVariable;
             else if (t1.BracketsContent != null && t2.BracketsContent != null)
             {
                 tempTerm = new TermWithBrackets();
@@ -92,7 +90,6 @@ namespace Equ
                     }
                 }
             }
-            //TODO: Condsider making a seperate method for these two
             else if (t1.BracketsContent != null)
             {
                 tempTerm = new TermWithBrackets();
@@ -109,6 +106,8 @@ namespace Equ
                     tempTerm.BracketsContent.Add(t2.BracketsContent[i] * t1);
                 }
             }
+            else if (t1.IsNumberz() && t2.IsVariable() || (t1.IsVariable() && t2.IsNumberz())) tempTerm.Type = TermType.variable;
+            else if (t1.IsNumberz() && t2.IsSqVariable() || t1.IsSqVariable() && t2.IsNumberz()) tempTerm.Type = TermType.sqVariable;
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }

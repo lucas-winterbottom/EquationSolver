@@ -14,6 +14,8 @@ namespace Equ
         {
             this.lhs = lhs;
             this.rhs = rhs;
+            if (rhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoRHSContent, " Missing values on the right hand side of the equation");
+
         }
 
         //Constructor for working on terms within brackets
@@ -57,7 +59,6 @@ namespace Equ
                     SolveQuadratic();
                     break;
             }
-            Console.ReadLine();
         }
 
         //Handles the calculation of terms within brakcets
@@ -165,7 +166,7 @@ namespace Equ
         {
             if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].Coeff = rhs[0].Coeff / lhs[0].Coeff;
-            Console.WriteLine(Constants.X + Constants.eq + rhs[0].Coeff);
+            Console.WriteLine(lhs[0].ToString() + Constants.eq.ToString() + rhs[0].Coeff);
         }
 
         //Moves all the 'number' variables to the right hand side

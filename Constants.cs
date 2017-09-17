@@ -8,7 +8,7 @@ namespace Equ
         public const string calc = "calc";
         public const char eq = '=';
         public const string prompt = "Enter another Equation: ";
-        public const string symbolcheck = "*-+/%X^1234567890calc()= ";
+        public const string symbolcheck = "*-+/%X^1234567890cxalc()= ";
         public const char div = '/';
         public const char mul = '*';
         public const char mod = '%';

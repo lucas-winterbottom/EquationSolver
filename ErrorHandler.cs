@@ -25,6 +25,7 @@ namespace Equ
         TrailingDivisionOperator,
         DivByPronumeral,
         NoLHSContent,
-        NoRHSContent
+        NoRHSContent,
+        UnparseableCombination
     }
 }

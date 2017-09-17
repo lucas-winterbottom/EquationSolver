@@ -45,17 +45,6 @@ namespace Equ
             Solver solver = new Solver(BracketsContent);
             solver.SolveInterior();
             BracketsContent = solver.Lhs;
-            if (coeff != 1 || type != TermType.number)
-            {
-                List<Term> temp = this.BracketsContent;
-                BracketsContent = null;
-                for (int i = 0; i < temp.Count; i++)
-                {
-                    temp[i] = this * temp[i];
-                }
-                this.BracketsContent = temp;
-                this.Coeff = 1;
-            }
         }
     }
 }

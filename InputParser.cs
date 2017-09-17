@@ -37,7 +37,6 @@ namespace Equ
             this.input = input;
             isLhs = true;
             ParseInput();
-            if (rhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoRHSContent, " Missing values on the right hand side of the equation");
         }
 
         //Method to convert the input into term object and insert them into the lhs or rhs array
@@ -92,6 +91,8 @@ namespace Equ
                 {
                     temp.Modifier = Modifier.MOD;
                 }
+                //TODO:
+                //make sure i handle the * 0 thing
                 else if (s.Equals(Constants.eq.ToString()))
                 {
                     if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingDivisionOperator, " : " + s);
@@ -108,7 +109,7 @@ namespace Equ
                 }
                 else
                 {
-                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters, " At input:" + s);
+                    ErrorHandler.ExitWithMessage(Error.UnparseableCombination, " At input:" + s);
                 }
             }
         }
@@ -157,7 +158,7 @@ namespace Equ
                     tempno += c;
                 }
                 else if (tempno.Length == 0) return temp;
-                else if (c == Constants.X || c == Constants.mul)
+                else if (c == Constants.X || c == Constants.mul || c == Constants.x)
                 {
                     if (Double.TryParse(tempno, out double value))
                     {

@@ -16,6 +16,7 @@ namespace Equ
         {
             input = new List<string>();
             string consoleInput = Console.ReadLine();
+            ValidateInput(consoleInput);
             input = consoleInput.Split(' ').ToList();
             input = ConcatBrackets(input);
             RemoveCalc();
@@ -23,9 +24,19 @@ namespace Equ
 
         public InputReader(string[] args)
         {
-            ValidateArgs(args);
+            ValidateInput(String.Join("", args));
             input = ConcatBrackets(args.ToList());
             RemoveCalc();
+        }
+
+        private void ValidateInput(string s)
+        {
+            if (!s.Contains(Constants.eq)) ErrorHandler.ExitWithMessage(Error.NoEquals, " Equation is missing = value ");
+            if (!s.Contains(Constants.X) && !s.Contains(Constants.x)) ErrorHandler.ExitWithMessage(Error.NoPronumeral, " Equation is missing X or X^2 value");
+            foreach (char c in s)
+            {
+                if (!Constants.symbolcheck.Contains(c)) ErrorHandler.ExitWithMessage(Error.InvalidCharacters, " Invalid Character:" + c);
+            }
         }
 
         private List<string> ConcatBrackets(List<string> s)
@@ -35,19 +46,28 @@ namespace Equ
             string tempString = "";
             for (int i = 0; i < s.Count; i++)
             {
-                if (s.Contains(Constants.lb.ToString()))
+                if (s[i].Contains(Constants.lb))
                 {
-                    tempString += s[i];
+                    if (s[i].Split('(')[0].Length > 1)
+                    {
+                        tempList.Add(s[i].Split('(')[0]);
+                        tempList.Add("*");
+                        tempString += '(' + s[i].Split('(')[1];
+                    }
+                    else
+                    {
+                        tempString += s[i];
+                    }
                     inBrackets = true;
                 }
-                else if (s.Contains(Constants.rb.ToString()))
+                else if (s[i].Contains(Constants.rb))
                 {
                     tempString += s[i];
                     tempList.Add(tempString);
                     inBrackets = false;
                     tempString = "";
                 }
-                else if (s.Contains(Constants.rb.ToString()) && s.Contains(Constants.lb.ToString()))
+                else if (s[i].Contains(Constants.rb) && s[i].Contains(Constants.lb))
                 {
                     tempList.Add(s[i]);
                 }
@@ -61,71 +81,6 @@ namespace Equ
                 }
             }
             return tempList;
-        }
-
-        //Check args to make sure they contain = and X
-        private void ValidateArgs(string[] args)
-        {
-            bool noX = true;
-            if (!args.Contains(Constants.eq.ToString())) ErrorHandler.ExitWithMessage(Error.NoEquals, " Equation is missing = value (args)");
-            foreach (string s in args)
-            {
-                if (s.Contains(Constants.X)) noX = false;
-            }
-            if (noX) ErrorHandler.ExitWithMessage(Error.NoPronumeral, " Equation is missing X or X^2 value (args)");
-        }
-
-
-        //Convert the input into seperate strings utilising the format of operator space opeartor
-        private void InputToStrings()
-        {
-            List<char> consoleInput = Console.ReadLine().ToList();
-            string current = "";
-            bool hasEquals = false;
-            bool hasX = false;
-            bool inBrackets = false;
-            foreach (char c in consoleInput)
-            {
-                if (!Constants.symbolcheck.Contains(c))
-                {
-                    ErrorHandler.ExitWithMessage(Error.InvalidCharacters, " At index:" + consoleInput.IndexOf(c));
-                }
-                switch (c)
-                {
-                    case ' ':
-                        if (inBrackets) current += c;
-                        else if (!current.Equals(""))
-                        {
-                            input.Add(current);
-                            current = "";
-                        }
-                        break;
-                    case '(':
-                        inBrackets = true;
-                        current += c;
-                        break;
-                    case ')':
-                        input.Add(current + c);
-                        inBrackets = false;
-                        current = "";
-                        break;
-                    case '=':
-                        hasEquals = true;
-                        current += c;
-                        break;
-                    case 'X':
-                        hasX = true;
-                        current += c;
-                        break;
-                    default:
-                        current += c;
-                        break;
-                }
-            }
-            if (!current.Equals("")) input.Add(current);
-            else ErrorHandler.ExitWithMessage(Error.MissingCalc, " The command is missing the calc prefix");
-            if (!hasEquals) ErrorHandler.ExitWithMessage(Error.NoEquals, " Equation is missing = value");
-            if (!hasX) ErrorHandler.ExitWithMessage(Error.NoPronumeral, " Equation is missing X or X^2 value");
         }
 
         //Checks if calc is present if so removes the calc prefix from the input
