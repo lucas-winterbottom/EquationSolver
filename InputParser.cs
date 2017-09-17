@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Equ
 {
+    //Class to convert input to Term object which can then be solved
     public class InputParser
     {
         private List<Term> rhs;
@@ -28,6 +29,7 @@ namespace Equ
             }
         }
 
+        //Contructor to prepare for input parsing
         public InputParser(List<string> input)
         {
             rhs = new List<Term>();
@@ -38,6 +40,7 @@ namespace Equ
             if (rhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoRHSContent, " Missing values on the right hand side of the equation");
         }
 
+        //Method to convert the input into term object and insert them into the lhs or rhs array
         private void ParseInput()
         {
             Term temp = new Term();
@@ -171,23 +174,6 @@ namespace Equ
             }
             return temp;
         }
-
-        private void PrintParsedInput()
-        {
-            Console.WriteLine("PrintParsedInput");
-            foreach (Term i in lhs)
-            {
-                Console.Write(i.ToString());
-            }
-            Console.Write(Constants.eq);
-            foreach (Term i in rhs)
-            {
-                Console.Write(i.ToString());
-            }
-            Console.WriteLine("");
-            Console.WriteLine("------------");
-        }
-
     }
 
 }

@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Equ
 {
+    //Class to read ther user input and convert it to a form that can be easily parsed
     public class InputReader
     {
 
@@ -25,17 +26,19 @@ namespace Equ
             RemoveCalc();
         }
 
+        //Check args to make sure they contain = and X
         private void ValidateArgs(string[] args)
         {
             bool noX = true;
-            if (!args.Contains(Constants.eq.ToString())) ErrorHandler.ExitWithMessage(Error.NoEquals);
+            if (!args.Contains(Constants.eq.ToString())) ErrorHandler.ExitWithMessage(Error.NoEquals, " Equation is missing = value (args)");
             foreach (string s in args)
             {
                 if (s.Contains(Constants.X)) noX = false;
             }
-            if (noX) ErrorHandler.ExitWithMessage(Error.NoPronumeral);
+            if (noX) ErrorHandler.ExitWithMessage(Error.NoPronumeral, " Equation is missing X or X^2 value (args)");
         }
 
+        //Convert the input into seperate strings utilising the format of operator space opeartor
         private void InputToStrings()
         {
             List<char> consoleInput = Console.ReadLine().ToList();
@@ -82,17 +85,18 @@ namespace Equ
                 }
             }
             if (!current.Equals("")) input.Add(current);
-            else ErrorHandler.ExitWithMessage(Error.MissingCalc);
-            if (!hasEquals) ErrorHandler.ExitWithMessage(Error.NoEquals);
-            if (!hasX) ErrorHandler.ExitWithMessage(Error.NoPronumeral);
+            else ErrorHandler.ExitWithMessage(Error.MissingCalc, " The command is missing the calc prefix");
+            if (!hasEquals) ErrorHandler.ExitWithMessage(Error.NoEquals, " Equation is missing = value");
+            if (!hasX) ErrorHandler.ExitWithMessage(Error.NoPronumeral, " Equation is missing X or X^2 value");
         }
 
+        //Checks if calc is present if so removes the calc prefix from the input
         public void RemoveCalc()
         {
             if (input[0].Equals(Constants.calc) && input.Count > 0)
                 input.RemoveAt(0);
             else
-                ErrorHandler.ExitWithMessage(Error.MissingCalc);
+                ErrorHandler.ExitWithMessage(Error.MissingCalc, " The command is missing the calc prefix");
         }
     }
 

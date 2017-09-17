@@ -6,6 +6,9 @@ namespace Equ
     internal class BracketHandler
     {
         public static string operators = "-+*/%";
+
+        //Takes in a string and a modifier and returns a term with a list of terms that are inside the brackets and those that are outside
+        //becoome the term itself
         internal static TermWithBrackets Process(string s, Modifier m)
         {
             TermWithBrackets temp = new TermWithBrackets();
@@ -19,6 +22,7 @@ namespace Equ
             return temp;
         }
 
+        //Takes in the prefix and returns its numeric or pronumeral value
         private static TermType ProcessPrefix(string prefix, TermWithBrackets temp)
         {
             if (Double.TryParse(prefix.Split('X')[0], out double value)) temp.Coeff = value;
@@ -36,6 +40,7 @@ namespace Equ
 
         }
 
+        //Takes in the interior terms and returns a list of strings for parsing
         private static List<string> ProcessInterior(string s)
         {
             List<String> inside = new List<string>();
