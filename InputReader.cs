@@ -48,6 +48,8 @@ namespace Equ
             {
                 if (s[i].Contains(Constants.lb))
                 {
+                    if (tempString.Length != 0) tempList.Add(tempString);
+                    tempString = "";
                     if (s[i].Split('(')[0].Length > 1)
                     {
                         tempList.Add(s[i].Split('(')[0]);
@@ -65,11 +67,14 @@ namespace Equ
                     tempString += s[i];
                     tempList.Add(tempString);
                     inBrackets = false;
-                    tempString = "";
+                    tempString = "*";
                 }
                 else if (s[i].Contains(Constants.rb) && s[i].Contains(Constants.lb))
                 {
+                    if (tempString.Length != 0) tempList.Add(tempString);
+                    tempString = "";
                     tempList.Add(s[i]);
+                    tempString = "*";
                 }
                 else if (inBrackets)
                 {

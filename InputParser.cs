@@ -50,7 +50,7 @@ namespace Equ
                 {
                     AddTerm((Term)BracketHandler.Process(s, temp.Modifier));
                     temp = new Term();
-                    temp.Modifier = Modifier.MUL;
+                    //temp.Modifier = Modifier.MUL;
                 }
                 else if (s.Contains(Constants.xSq) || s.Contains(Constants.XSq))
                 {
