@@ -108,6 +108,7 @@ namespace Equ
             }
             else if (t1.IsNumberz() && t2.IsVariable() || (t1.IsVariable() && t2.IsNumberz())) tempTerm.Type = TermType.variable;
             else if (t1.IsNumberz() && t2.IsSqVariable() || t1.IsSqVariable() && t2.IsNumberz()) tempTerm.Type = TermType.sqVariable;
+            else if (t1.IsVariable() && t2.IsSqVariable() || t1.IsSqVariable() && t2.IsVariable()) ErrorHandler.ExitWithMessage(Error.TooLargeIndices, " Software cannot handles indices greater than 2");
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }
@@ -152,7 +153,6 @@ namespace Equ
             else if (t1.IsVariable() && t2.IsNumberz()) tempTerm.Type = TermType.variable;
             else if ((t1.IsSqVariable() && t2.IsNumberz())) tempTerm.Type = TermType.sqVariable;
             else if (t1.IsSqVariable() && t2.IsVariable()) tempTerm.type = TermType.variable;
-            else if (t1.IsNumberz() && t2.IsVariable() || t1.IsNumberz() && t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.DivByPronumeral, " Cannot Divide numeral by X or X^2 :" + t1.ToString() + t2.ToString());
             else tempTerm.Type = TermType.number;
             return tempTerm;
         }

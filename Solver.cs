@@ -235,13 +235,31 @@ namespace Equ
                         i--;
                         break;
                     case Modifier.DIV:
-                        side[i] = side[i - 1] / side[i];
-                        side.RemoveAt(i - 1);
-                        i--;
+                        if ((side[i].IsVariable() || side[i].IsSqVariable()) && side[i - 1].IsNumberz())
+                        {
+                            if (side == lhs) MultiplyOutX(rhs, side[i]);
+                            else MultiplyOutX(lhs, side[i]);
+                            side.RemoveAt(i);
+                        }
+                        else
+                        {
+                            side[i] = side[i - 1] / side[i];
+                            side.RemoveAt(i - 1);
+                            i--;
+                        }
                         break;
                     default:
                         break;
                 }
+            }
+        }
+
+        //Method to handle division by X
+        private void MultiplyOutX(List<Term> side, Term term)
+        {
+            for (int i = 0; i < side.Count; i++)
+            {
+                side[i] = side[i] * term;
             }
         }
     }

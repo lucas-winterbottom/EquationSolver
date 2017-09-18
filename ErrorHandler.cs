@@ -24,6 +24,7 @@ namespace Equ
         DivByPronumeral,
         NoLHSContent,
         NoRHSContent,
-        UnparseableCombination
+        UnparseableCombination,
+        TooLargeIndices
     }
 }
