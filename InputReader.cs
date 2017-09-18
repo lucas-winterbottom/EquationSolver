@@ -29,6 +29,7 @@ namespace Equ
             RemoveCalc();
         }
 
+        //Checks if the input contains X, = and has no invalid characters
         private void ValidateInput(string s)
         {
             if (!s.Contains(Constants.eq)) ErrorHandler.ExitWithMessage(Error.NoEquals, " Equation is missing = value ");
@@ -39,6 +40,7 @@ namespace Equ
             }
         }
 
+        //Concatinates brackets to ensure they are condensed to one string
         private List<string> ConcatBrackets(List<string> s)
         {
             List<string> tempList = new List<string>();
@@ -46,7 +48,19 @@ namespace Equ
             string tempString = "";
             for (int i = 0; i < s.Count; i++)
             {
-                if (s[i].Contains(Constants.lb))
+                if (s[i].Contains(Constants.rb) && s[i].Contains(Constants.lb))
+                {
+                    if (tempString.Length != 0) tempList.Add(tempString);
+                    tempString = "";
+                    if (s[i].Split('(')[0].Length > 0)
+                    {
+                        tempList.Add(s[i].Split('(')[0]);
+                        tempList.Add("*");
+                        tempList.Add('(' + s[i].Split('(')[1]);
+                    }
+                    tempString = "*";
+                }
+                else if (s[i].Contains(Constants.lb))
                 {
                     if (tempString.Length != 0) tempList.Add(tempString);
                     tempString = "";
@@ -67,13 +81,6 @@ namespace Equ
                     tempString += s[i];
                     tempList.Add(tempString);
                     inBrackets = false;
-                    tempString = "*";
-                }
-                else if (s[i].Contains(Constants.rb) && s[i].Contains(Constants.lb))
-                {
-                    if (tempString.Length != 0) tempList.Add(tempString);
-                    tempString = "";
-                    tempList.Add(s[i]);
                     tempString = "*";
                 }
                 else if (inBrackets)

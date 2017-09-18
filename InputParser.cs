@@ -10,10 +10,7 @@ namespace Equ
         private List<Term> rhs;
         private List<Term> lhs;
         private List<string> input;
-        private bool isNegative = false;
         private bool isLhs = false;
-        private static string operators = "*/+-";
-
         public List<Term> Lhs
         {
             get
@@ -43,7 +40,6 @@ namespace Equ
         private void ParseInput()
         {
             Term temp = new Term();
-            isNegative = false;
             foreach (string s in input)
             {
                 if (s.Contains(Constants.lb) && s.Contains(Constants.rb))
@@ -76,8 +72,7 @@ namespace Equ
                 else if (s.Equals(Constants.minus.ToString()))
                 {
                     temp.Modifier = Modifier.NONE;
-                    if (isNegative) isNegative = false;
-                    else isNegative = true;
+                    temp.InvertValue();
                 }
                 else if (s.Equals(Constants.div.ToString()))
                 {
@@ -91,19 +86,19 @@ namespace Equ
                 {
                     temp.Modifier = Modifier.MOD;
                 }
-                //TODO:
-                //make sure i handle the * 0 thing
+
                 else if (s.Equals(Constants.eq.ToString()))
                 {
-                    if (operators.Contains(input[input.IndexOf(s) - 1])) ErrorHandler.ExitWithMessage(Error.TrailingDivisionOperator, " : " + s);
+                    if (temp.Modifier == Modifier.DIV || temp.Modifier == Modifier.MOD) ErrorHandler.ExitWithMessage(Error.TrailingDivisionOperator, " : " + s);
                     if (lhs.Count == 0) ErrorHandler.ExitWithMessage(Error.NoLHSContent, " No Terms in the LHS of the Equation");
+                    temp.Coeff = 0;
+                    AddTerm(temp);
                     isLhs = false;
                     temp = new Term();
                 }
                 else if (Double.TryParse(s, out double numericalValue))
                 {
-                    if (isNegative) temp.Coeff = -numericalValue;
-                    else temp.Coeff = numericalValue;
+                    temp.Coeff *= numericalValue;
                     AddTerm(temp);
                     temp = new Term();
                 }
@@ -119,7 +114,6 @@ namespace Equ
         {
             if (isLhs) lhs.Add(test);
             else rhs.Add(test);
-            isNegative = false;
         }
 
         //Loop through while it is still a number, or a negative symbol
@@ -137,8 +131,7 @@ namespace Equ
                 {
                     if (Double.TryParse(tempno, out double value))
                     {
-                        if (isNegative) temp.Coeff = -value * value;
-                        else temp.Coeff = value * value;
+                        temp.Coeff *= value;
                     }
                     else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " In string:" + s);
                 }
@@ -160,10 +153,10 @@ namespace Equ
                 else if (tempno.Length == 0) return temp;
                 else if (c == Constants.X || c == Constants.mul || c == Constants.x)
                 {
+                    if (tempno.Equals("-")) tempno += 1;
                     if (Double.TryParse(tempno, out double value))
                     {
-                        if (isNegative) temp.Coeff = -value;
-                        else temp.Coeff = value;
+                        temp.Coeff *= value;
                         return temp;
                     }
                     else ErrorHandler.ExitWithMessage(Error.ErrorParsingDouble, " In string:" + s);

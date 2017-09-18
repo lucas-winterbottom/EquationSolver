@@ -119,7 +119,7 @@ namespace Equ
         //Makes sure the x1 and x2 values are real numbers and then prints them in the required format
         private void PrintXs(double x1, double x2)
         {
-            if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NotANumber, " Cause: " + rhs[0]);
+            if (x1.Equals(Double.NaN) || x2.Equals(Double.NaN)) ErrorHandler.ExitWithMessage(Error.NotANumber, "Solving has resulted in a imaginary number.");
             Console.WriteLine("X = " + x1 + "," + x2);
         }
 
@@ -166,7 +166,8 @@ namespace Equ
         {
             if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].Coeff = rhs[0].Coeff / lhs[0].Coeff;
-            Console.WriteLine(lhs[0].ToString() + Constants.eq.ToString() + rhs[0].Coeff);
+            lhs[0].Coeff = 1;
+            Console.WriteLine(lhs[0].ToString() + " " + Constants.eq.ToString()+ " " + rhs[0].Coeff);
         }
 
         //Moves all the 'number' variables to the right hand side
