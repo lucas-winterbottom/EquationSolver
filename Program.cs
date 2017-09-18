@@ -8,16 +8,28 @@ namespace Equ
 
         static void Main(string[] args)
         {
-            InputReader reader = new InputReader(args);
-            while (true)
+            string consoleInput = String.Join(" ", args);
+            do
             {
-                InputParser parser = new InputParser(reader.Input);
-                Solver solver = new Solver(parser.Lhs, parser.Rhs);
-                solver.Solve();
-                Console.WriteLine(Constants.prompt);
-                reader = new InputReader();
-            }
+                try
+                {
+                    InputReader reader = new InputReader(consoleInput);
+                    InputParser parser = new InputParser(reader.Input);
+                    Solver solver = new Solver(parser.Lhs, parser.Rhs);
+                    solver.Solve();
+                    Console.WriteLine(Constants.prompt);
+                    consoleInput = Console.ReadLine();
+                }
+                catch (InvalidEquationException e)
+                {
+                    Console.WriteLine("ErrorType: " + e.ErrorType.ToString());
+                    Console.WriteLine("ErrorMessage: " + e.MessageString);
+                    Console.WriteLine(Constants.prompt);
+                    consoleInput = Console.ReadLine();
+                }
+            } while (!consoleInput.Equals("exit"));
 
         }
+
     }
 }

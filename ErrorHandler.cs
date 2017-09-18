@@ -12,9 +12,7 @@ namespace Equ
 
         internal static void ExitWithMessage(Error e, string s)
         {
-            Console.WriteLine("ErrorType: " + e.ToString());
-            Console.WriteLine("ErrorMessage: " + s);
-            Environment.Exit(0);
+            throw new InvalidEquationException(e, s);
         }
     }
 

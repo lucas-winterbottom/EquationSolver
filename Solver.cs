@@ -34,8 +34,8 @@ namespace Equ
         //Solve for X
         public void Solve()
         {
-            Brackets(lhs);
-            Brackets(rhs);
+            SolveBrackets(lhs);
+            SolveBrackets(rhs);
             MulDivideModulus(lhs);
             MulDivideModulus(rhs);
             ExpandBrackets(lhs);
@@ -84,7 +84,7 @@ namespace Equ
         }
 
         //Makes the outside bracket term multiply with the interior terms.
-        private void Brackets(List<Term> side)
+        private void SolveBrackets(List<Term> side)
         {
             foreach (Term t in side)
             {
@@ -110,6 +110,7 @@ namespace Equ
             double c = lhs[2].Coeff;
 
             double sqrtpart = b * b - 4 * a * c;
+            if (sqrtpart < 0) ErrorHandler.ExitWithMessage(Error.NotANumber, "Solving will result in a imaginary number.");
             double x1 = (-b + Math.Sqrt(sqrtpart)) / (2 * a);
             double x2 = (-b - Math.Sqrt(sqrtpart)) / (2 * a);
             PrintXs(x1, x2);
@@ -167,7 +168,7 @@ namespace Equ
             if (rhs.Count == 0) rhs.Add(new Term(0));
             rhs[0].Coeff = rhs[0].Coeff / lhs[0].Coeff;
             lhs[0].Coeff = 1;
-            Console.WriteLine(lhs[0].ToString() + " " + Constants.eq.ToString()+ " " + rhs[0].Coeff);
+            Console.WriteLine(lhs[0].ToString() + " " + Constants.eq.ToString() + " " + rhs[0].Coeff);
         }
 
         //Moves all the 'number' variables to the right hand side

@@ -12,20 +12,13 @@ namespace Equ
 
         public List<string> Input { get => input; set => input = value; }
 
-        public InputReader()
+        public InputReader(string s)
         {
             input = new List<string>();
-            string consoleInput = Console.ReadLine();
+            string consoleInput = s;
             ValidateInput(consoleInput);
             input = consoleInput.Split(' ').ToList();
             input = ConcatBrackets(input);
-            RemoveCalc();
-        }
-
-        public InputReader(string[] args)
-        {
-            ValidateInput(String.Join("", args));
-            input = ConcatBrackets(args.ToList());
             RemoveCalc();
         }
 

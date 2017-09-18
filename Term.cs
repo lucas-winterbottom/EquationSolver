@@ -53,7 +53,7 @@ namespace Equ
         /**
         *
         *
-        *These next few method are just to make it easier to determine the type of a term
+        *These next few methods are just to make it easier to determine the type of a term
         *
         *
         */
@@ -164,7 +164,7 @@ namespace Equ
         {
             Term tempTerm = new Term();
             if (t2.Coeff == 0) ErrorHandler.ExitWithMessage(Error.DivByZero);
-            tempTerm.Coeff = t1.Coeff * t2.Coeff;
+            tempTerm.Coeff = t1.Coeff % t2.Coeff;
             if (t1.IsVariable() || t2.IsVariable() || t1.IsSqVariable() || t2.IsSqVariable()) ErrorHandler.ExitWithMessage(Error.DivByPronumeral);
             else tempTerm.Type = TermType.number;
             return tempTerm;
