@@ -46,7 +46,6 @@ namespace Equ
                 {
                     AddTerm((Term)BracketHandler.Process(s, temp.Modifier));
                     temp = new Term();
-                    //temp.Modifier = Modifier.MUL;
                 }
                 else if (s.Contains(Constants.xSq) || s.Contains(Constants.XSq))
                 {
@@ -107,6 +106,8 @@ namespace Equ
                     ErrorHandler.ExitWithMessage(Error.UnparseableCombination, " At input:" + s);
                 }
             }
+            temp.Coeff = 0;
+            AddTerm(temp);
         }
 
         //Adds the term to the left or right hand side depending on where the parser is up to

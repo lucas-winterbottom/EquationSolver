@@ -58,6 +58,7 @@ namespace Equ
                         tempList.Add("*");
                         tempList.Add('(' + s[i].Split('(')[1]);
                     }
+                    else tempList.Add(s[i]);
                     tempString = "*";
                 }
                 else if (s[i].Contains(Constants.lb))
@@ -90,6 +91,7 @@ namespace Equ
                 else
                 {
                     tempList.Add(s[i]);
+                    tempString = "";
                 }
             }
             return tempList;
