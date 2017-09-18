@@ -4,7 +4,7 @@
 /Users/lucaswinterbottom/Projects/Equ/bin/Debug/netcoreapp2.0/Equ.dll
 /Users/lucaswinterbottom/Projects/Equ/bin/Debug/netcoreapp2.0/Equ.pdb
 /Users/lucaswinterbottom/Projects/Equ/obj/Debug/netcoreapp2.0/Equ.csproj.CoreCompileInputs.cache
-/Users/lucaswinterbottom/Projects/Equ/obj/Debug/netcoreapp2.0/Equ.AssemblyInfoInputs.cache
 /Users/lucaswinterbottom/Projects/Equ/obj/Debug/netcoreapp2.0/Equ.AssemblyInfo.cs
 /Users/lucaswinterbottom/Projects/Equ/obj/Debug/netcoreapp2.0/Equ.dll
 /Users/lucaswinterbottom/Projects/Equ/obj/Debug/netcoreapp2.0/Equ.pdb
+/Users/lucaswinterbottom/Projects/Equ/obj/Debug/netcoreapp2.0/Equ.csprojResolveAssemblyReference.cache

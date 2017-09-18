@@ -1,3 +1,16 @@
 ﻿<Properties StartupConfiguration="{2F865089-CEB6-41FD-AB9D-3137737CE5B4}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Term.cs">
+    <Files>
+      <File FileName="Solver.cs" Line="101" Column="9" />
+      <File FileName="TermWithBrackets.cs" Line="26" Column="17" />
+      <File FileName="Term.cs" Line="166" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Equ PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
